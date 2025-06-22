@@ -14,13 +14,20 @@ def fetch_player_stats():
     for attempt in range(3):
         try:
             # Set a custom User-Agent to mimic a real browser
-            NBAStatsHTTP._nba_stats_http_headers.update({
-                'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64)'
-            })
+            from nba_api.stats.library.http import NBAStatsHTTP
+
+            headers = {
+                'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64)',
+                'Referer': 'https://www.nba.com/',
+                'x-nba-stats-origin': 'stats',
+                'x-nba-stats-token': 'true'
+            }
 
             data = leaguedashplayerstats.LeagueDashPlayerStats(
-                season='2024-25'
+                season='2024-25',
+                headers=headers
             ).get_data_frames()[0]
+
 
             stats = data.to_dict(orient='records')
             timestamp = datetime.now().strftime('%Y-%m-%d %H:%M:%S')
