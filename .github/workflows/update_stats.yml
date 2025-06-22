@@ -26,6 +26,9 @@ jobs:
         run: |
           git config --global user.name "github-actions"
           git config --global user.email "github-actions@github.com"
+          git status
+          ls -la
           git add player_stats.json || true
-          git commit -m "Auto update NBA stats" || exit 0
+          git commit -m "Auto update NBA stats" || echo "No changes to commit"
           git push
+
