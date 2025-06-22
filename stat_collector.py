@@ -1,5 +1,6 @@
 import json
 import time
+import os
 from nba_api.stats.endpoints import leaguedashplayerstats
 from nba_api.stats.library.parameters import Season
 from nba_api.stats.library.http import NBAStatsHTTP
@@ -46,3 +47,6 @@ def fetch_player_stats():
 
 if __name__ == "__main__":
     fetch_player_stats()
+    print("Checking if file exists...")
+    print("Files in directory:", os.listdir('.'))
+    print("File created:", os.path.exists("player_stats.json"))
