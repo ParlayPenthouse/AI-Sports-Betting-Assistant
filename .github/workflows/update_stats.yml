@@ -2,8 +2,11 @@ name: Update NBA Stats Every 3 Hours
 
 on:
   schedule:
-    - cron: '0 */3 * * *'  # Every 3 hours
+    - cron: '0 */3 * * *'
   workflow_dispatch:
+
+permissions:
+  contents: write
 
 jobs:
   update-stats:
